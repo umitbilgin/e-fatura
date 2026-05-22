@@ -1,5 +1,3 @@
-import { validate as validateUuid } from 'uuid';
-import uuidV1 from './uuidV1';
 import isPlainObject from './isPlainObject';
 import getDateFormat from './getDateFormat';
 import paymentPriceToText from './paymentPriceToText';
@@ -21,7 +19,6 @@ function mappingDraftInvoiceKeys(
   }
 
   const {
-    uuid = uuidV1(),
     documentNumber = '',
     date,
     time,
@@ -75,10 +72,6 @@ function mappingDraftInvoiceKeys(
     ...other
   } = payload;
 
-  if (!validateUuid(uuid)) {
-    throw new EInvoiceTypeError("Geçersiz fatura UUID'i.");
-  }
-
   greaterThanValidator(base, 0, 'base');
   greaterThanValidator(paymentPrice, 0, 'paymentPrice');
   greaterThanValidator(productsTotalPrice, 0, 'productsTotalPrice');
@@ -86,7 +79,7 @@ function mappingDraftInvoiceKeys(
 
   return {
     ...other,
-    faturaUuid: uuid,
+    faturaUuid: '',
     belgeNumarasi: documentNumber,
     faturaTarihi: getDateFormat(date),
     saat: getDateFormat(time, 'time'),

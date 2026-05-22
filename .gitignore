@@ -1,5 +1,7 @@
 .idea
 dist
+!packages/e-fatura/dist/
+!packages/e-fatura/dist/**
 coverage
 node_modules
 .env

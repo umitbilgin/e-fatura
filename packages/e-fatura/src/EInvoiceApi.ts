@@ -689,7 +689,7 @@ class EInvoiceApi {
    */
   async createDraftInvoice(
     payload: CreateDraftInvoicePayload
-  ): Promise<string> {
+  ): Promise<boolean> {
     this.checkToken();
 
     const invoice = mappingDraftInvoiceKeys(payload);
@@ -716,7 +716,7 @@ class EInvoiceApi {
       });
     }
 
-    return invoice.faturaUuid as string;
+    return true;
   }
 
   /**
